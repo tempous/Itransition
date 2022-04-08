@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Itransition
 {
@@ -10,7 +11,7 @@ namespace Itransition
         static void Main(string[] args)
         {
             var hashes = new List<string>();
-            string email = "test@gmail.com";
+            var email = "test@gmail.com";
             var result = "";
 
             using (var sha3256 = Sha3.Sha3256())
@@ -35,6 +36,10 @@ namespace Itransition
                 }
 
                 result += email;
+
+                Console.WriteLine();
+                Console.WriteLine("Result hash:");
+                Console.WriteLine(BitConverter.ToString(sha3256.ComputeHash(Encoding.UTF8.GetBytes(result))).Replace("-", "").ToLower());
             }
         }
     }
