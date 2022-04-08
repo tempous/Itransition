@@ -10,6 +10,8 @@ namespace Itransition
         static void Main(string[] args)
         {
             var hashes = new List<string>();
+            string email = "test@gmail.com";
+            var result = "";
 
             using (var sha3256 = Sha3.Sha3256())
             {
@@ -27,7 +29,12 @@ namespace Itransition
                 Console.WriteLine("Sorted hashes: " + hashes.Count);
                 hashes.Sort();
                 foreach (var hash in hashes)
+                {
                     Console.WriteLine(hash);
+                    result += hash;
+                }
+
+                result += email;
             }
         }
     }
