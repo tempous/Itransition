@@ -22,6 +22,12 @@ namespace Itransition
                 Console.WriteLine("Generated hashes: " + hashes.Count);
                 foreach (var hash in hashes)
                     Console.WriteLine(hash);
+
+                Console.WriteLine();
+                Console.WriteLine("Sorted hashes: " + hashes.Count);
+                hashes.Sort();
+                foreach (var hash in hashes)
+                    Console.WriteLine(hash);
             }
         }
     }
