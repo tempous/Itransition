@@ -16,7 +16,7 @@ namespace Itransition
                 foreach (var file in Directory.EnumerateFiles("R:\\task2"))
                 {
                     Console.WriteLine(file);
-                    Console.WriteLine(BitConverter.ToString(sha3256.ComputeHash(File.ReadAllBytes(file))));
+                    Console.WriteLine(BitConverter.ToString(sha3256.ComputeHash(File.ReadAllBytes(file))).Replace("-", "").ToLower());
                 }
             }
         }
