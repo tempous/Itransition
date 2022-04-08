@@ -8,6 +8,11 @@ namespace Itransition
 {
     class Program
     {
+        static string GetHash(Sha3 sha3256, byte[] bytes)
+        {
+            return BitConverter.ToString(sha3256.ComputeHash(bytes)).Replace("-", "").ToLower();
+        }
+
         static void Main(string[] args)
         {
             var hashes = new List<string>();
@@ -18,8 +23,7 @@ namespace Itransition
             {
                 foreach (var file in Directory.EnumerateFiles("R:\\task2"))
                 {
-                    Console.WriteLine(file);
-                    hashes.Add(BitConverter.ToString(sha3256.ComputeHash(File.ReadAllBytes(file))).Replace("-", "").ToLower());
+                    hashes.Add(GetHash(sha3256, File.ReadAllBytes(file)));
                 }
 
                 Console.WriteLine("Generated hashes: " + hashes.Count);
@@ -39,7 +43,7 @@ namespace Itransition
 
                 Console.WriteLine();
                 Console.WriteLine("Result hash:");
-                Console.WriteLine(BitConverter.ToString(sha3256.ComputeHash(Encoding.UTF8.GetBytes(result))).Replace("-", "").ToLower());
+                Console.WriteLine(GetHash(sha3256, Encoding.UTF8.GetBytes(result)));
             }
         }
     }
