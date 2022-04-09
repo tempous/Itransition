@@ -15,6 +15,9 @@ namespace HMAC
 
             var key = Generator.GenerateKey();
             Console.WriteLine(key);
+
+            var hmac = Generator.GenerateHMAC(key, "rock");
+            Console.WriteLine(hmac);
         }
     }
 }
