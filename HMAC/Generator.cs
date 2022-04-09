@@ -15,5 +15,12 @@ namespace HMAC
             rng.GetBytes(key);
             return BitConverter.ToString(key).Replace("-", "");
         }
+
+        public static string GenerateHMAC(string key, string move)
+        {
+            var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key));
+            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(move));
+            return BitConverter.ToString(hash).Replace("-", "");
+        }
     }
 }
