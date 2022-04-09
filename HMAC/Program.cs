@@ -7,11 +7,14 @@ namespace HMAC
     {
         static void Main(string[] arguments)
         {
-            var args = arguments.Distinct();
+            var args = arguments.Distinct().ToArray();
             var argCount = args.Count();
 
             if (argCount < 3 || argCount % 2 == 0)
                 Console.WriteLine("Incorrect number of arguments - less than 3 or even!");
+
+            var key = Generator.GenerateKey();
+            Console.WriteLine(key);
         }
     }
 }
