@@ -11,16 +11,18 @@ namespace HMAC
         public static string GenerateKey()
         {
             var key = new byte[SIZE];
-            var rng = RandomNumberGenerator.Create();
-            rng.GetBytes(key);
-            return BitConverter.ToString(key).Replace("-", "");
+            RandomNumberGenerator.Create().GetBytes(key);
+            return GetStringFromBytes(key);
         }
 
-        public static string GenerateHMAC(string key, string move)
+        public static string GenerateHMAC(string key, string message)
         {
-            var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key));
-            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(move));
-            return BitConverter.ToString(hash).Replace("-", "");
+            var hash = new HMACSHA256(GetStringBytes(key)).ComputeHash(GetStringBytes(message));
+            return GetStringFromBytes(hash);
         }
+
+        static byte[] GetStringBytes(string message) => Encoding.UTF8.GetBytes(message);
+
+        static string GetStringFromBytes(byte[] bytes) => BitConverter.ToString(bytes).Replace("-", "");
     }
 }
