@@ -36,6 +36,32 @@ namespace HMAC
                     isCorrect = int.TryParse(Console.ReadLine(), out playerNumber);
                     if (isCorrect) isCorrect = (playerNumber < -1 || playerNumber > moveCount) ? false : true;
                 }
+
+                if (playerNumber == 0)
+                {
+                    Console.WriteLine("Exit: game over");
+                    return;
+                }
+                else
+                {
+                    var rules = Rules.Generate(moves);
+                    var ruleTable = Table.Create(moves, rules);
+
+                    if (playerNumber == -1)
+                    {
+                        Console.WriteLine("Help: rule table");
+                        Rules.GetWinPositions(rules);
+                        Table.Print();
+                    }
+                    else
+                    {
+                        var playerMove = moves[playerNumber - 1];
+                        Console.WriteLine($"Your move: {playerMove}");
+                        Console.WriteLine($"Computer move: {computerMove}");
+                        Console.WriteLine($"Status: {ruleTable[computerNumber + 1, playerNumber]}");
+                        Console.WriteLine($"Computer HMAC key: {key}");
+                    }
+                }
             }
         }
     }
