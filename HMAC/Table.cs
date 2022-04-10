@@ -12,5 +12,20 @@ namespace HMAC
         {
             return rules[i].Contains(j) ? "Win" : "Lose";
         }
+
+        public static string[,] Create(string[] moves, Dictionary<int, List<int>> rules)
+        {
+            size = moves.Length + 1;
+            ruleTable = new string[size, size];
+
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                    if (i == 0)
+                        ruleTable[i, j] = (j == 0) ? "" : moves[j - 1];
+                    else
+                        ruleTable[i, j] = (j == 0) ? moves[i - 1] : ((i == j) ? "Draw" : GetStatus(rules, i-1, j-1));
+
+            return ruleTable;
+        }
     }
 }
