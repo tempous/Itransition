@@ -24,5 +24,18 @@ namespace HMAC
 
             return rules;
         }
+
+        public static void GetWinPositions(Dictionary<int, List<int>> rules)
+        {
+            foreach (var move in rules.Keys)
+            {
+                Console.WriteLine(move);
+
+                foreach (var pos in rules[move])
+                    Console.Write(" " + pos);
+
+                Console.WriteLine();
+            }
+        }
     }
 }
