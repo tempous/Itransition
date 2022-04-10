@@ -26,6 +26,16 @@ namespace HMAC
                     Console.WriteLine($" {i + 1} - {moves[i]}");
                 Console.WriteLine(" 0 - [exit]");
                 Console.WriteLine("-1 - [help]");
+
+                var playerNumber = 0;
+                var isCorrect = false;
+
+                while (!isCorrect)
+                {
+                    Console.Write($"Enter your move [-1..{moveCount}]: ");
+                    isCorrect = int.TryParse(Console.ReadLine(), out playerNumber);
+                    if (isCorrect) isCorrect = (playerNumber < -1 || playerNumber > moveCount) ? false : true;
+                }
             }
         }
     }
