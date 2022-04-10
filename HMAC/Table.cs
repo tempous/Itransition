@@ -27,5 +27,16 @@ namespace HMAC
 
             return ruleTable;
         }
+
+        public static void Print()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                    Console.Write(ruleTable[i, j].PadRight((j == 0) ? 15 : 10));
+
+                Console.WriteLine();
+            }
+        }
     }
 }
