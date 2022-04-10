@@ -24,5 +24,7 @@ namespace HMAC
         static byte[] GetStringBytes(string message) => Encoding.UTF8.GetBytes(message);
 
         static string GetStringFromBytes(byte[] bytes) => BitConverter.ToString(bytes).Replace("-", "");
+
+        public static int GenerateRandomIntNumber(int numbers) => RandomNumberGenerator.GetInt32(numbers);
     }
 }
