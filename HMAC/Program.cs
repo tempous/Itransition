@@ -20,6 +20,12 @@ namespace HMAC
                 var computerMove = moves[computerNumber];
                 var hmac = Generator.GenerateHMAC(key, computerMove);
                 Console.WriteLine($"Computer HMAC: {hmac}");
+
+                Console.WriteLine("Menu: available moves:");
+                for (int i = 0; i < moveCount; i++)
+                    Console.WriteLine($" {i + 1} - {moves[i]}");
+                Console.WriteLine(" 0 - [exit]");
+                Console.WriteLine("-1 - [help]");
             }
         }
     }
