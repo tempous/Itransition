@@ -5,19 +5,22 @@ namespace HMAC
 {
     class Program
     {
-        static void Main(string[] arguments)
+        static void Main(string[] args)
         {
-            var args = arguments.Distinct().ToArray();
-            var argCount = args.Count();
+            //var moves = args.Distinct().ToArray();
+            var moves = new string[] { "rock", "paper", "scissors", "lizard", "spock", "bear", "fish" };
+            var moveCount = moves.Count();
 
-            if (argCount < 3 || argCount % 2 == 0)
+            if (moveCount < 3 || moveCount % 2 == 0)
                 Console.WriteLine("Incorrect number of arguments - less than 3 or even!");
-
-            var key = Generator.GenerateKey();
-            Console.WriteLine(key);
-
-            var hmac = Generator.GenerateHMAC(key, "rock");
-            Console.WriteLine(hmac);
+            else
+            {
+                var key = Generator.GenerateKey();
+                var computerNumber = Generator.GenerateRandomIntNumber(moveCount);
+                var computerMove = moves[computerNumber];
+                var hmac = Generator.GenerateHMAC(key, computerMove);
+                Console.WriteLine($"Computer HMAC: {hmac}");
+            }
         }
     }
 }
